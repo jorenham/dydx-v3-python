@@ -9,9 +9,8 @@ REQUIREMENTS = [
     'ecdsa>=0.16.0',
     'eth_keys',
     'eth-account>=0.4.0,<0.6.0',
-    'mpmath==1.0.0',
     'requests>=2.22.0,<3.0.0',
-    'sympy==1.6',
+    'sympy>=1.6,<2.0',
     'web3>=5.0.0,<6.0.0',
 ]
 

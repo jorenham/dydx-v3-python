@@ -15,22 +15,14 @@
 ###############################################################################
 
 
+import math
 from typing import Tuple
 
-import mpmath
 import sympy
-from sympy.core.numbers import igcdex
 
 # A type that represents a point (x,y) on an elliptic curve.
 ECPoint = Tuple[int, int]
 
-
-def pi_as_string(digits: int) -> str:
-    """
-    Returns pi as a string of decimal digits without the decimal point ("314...").
-    """
-    mpmath.mp.dps = digits  # Set number of digits.
-    return '3' + str(mpmath.mp.pi)[2:]
 
 
 def is_quad_residue(n: int, p: int) -> bool:
@@ -44,16 +36,16 @@ def sqrt_mod(n: int, p: int) -> int:
     """
     Finds the minimum positive integer m such that (m*m) % p == n
     """
-    return min(sympy.sqrt_mod(n, p, all_roots=True))
+    return min(sympy.sqrt_mod_iter(n, p))
 
 
 def div_mod(n: int, m: int, p: int) -> int:
     """
     Finds a nonnegative integer 0 <= x < p such that (m * x) % p == n
     """
-    a, b, c = igcdex(m, p)
-    assert c == 1
-    return (n * a) % p
+    assert math.gcd(m, p) == 1
+    return (pow(m, p - 2, p) * n) % p
+
 
 
 def ec_add(point1: ECPoint, point2: ECPoint, p: int) -> ECPoint:
