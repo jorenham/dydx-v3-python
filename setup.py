@@ -4,8 +4,8 @@ LONG_DESCRIPTION = open('README.md', 'r').read()
 
 REQUIREMENTS = [
     'aiohttp>=3.8.1',
-    'cytoolz==0.12.1',
-    'dateparser==1.0.0',
+    'cytoolz>=0.12.1,<1.0.0',
+    'dateparser>=1.0.0,<2.0.0',
     'ecdsa>=0.16.0',
     'eth_keys',
     'eth-account>=0.4.0,<0.6.0',
